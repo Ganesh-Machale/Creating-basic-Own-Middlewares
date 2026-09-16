@@ -17,12 +17,7 @@ const app = express();
 
 
 
-  // Making Logger Functionality my using middleware :
-  app.use((req,res,next)=>{
-      req.time = new Date(Date.now()).toString();
-      console.log(req.method,req.hostname,req.path,req.time);
-      next();
-  })
+  // Making Logger Functionality my using middleware 
 
       app.get("/",(req,res)=>{
     res.send("HI, I am Root ");
@@ -32,6 +27,12 @@ const app = express();
     res.send("Listing are showing");
    });
 
+
+    app.use((req,res,next)=>{
+      req.time = new Date(Date.now()).toString();
+      console.log(req.method,req.hostname,req.path,req.time);
+      next();
+  });
 
   app.listen(port,()=>{
     console.log(`port is Runing on ${port}`) 
