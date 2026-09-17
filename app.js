@@ -27,6 +27,19 @@ const app = express();
         next();
       });
 
+    //   Api access token validation middleware 
+      app.use("/api",(req,res,next)=>{
+        let { token } = req.query;
+         if (token === "giveaccess"){
+           next();
+         }
+          res.send("Access Denied!")
+      });
+
+     app.get("/api",(req,res)=>{
+         res.send("data ");
+       });
+
       app.get("/",(req,res)=>{
     res.send("HI, I am Root ");
    });
