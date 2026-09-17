@@ -19,26 +19,22 @@ const app = express();
 
   // Making Logger Functionality my using middleware 
 
-    app.use((req,res,next)=>{
-      req.time = new Date(Date.now()).toString();
-      console.log(req.method,req.hostname,req.path,req.time);
-      next();
-  });
+  //   
+  
+      // Specific Path Middleware that rubs only ones for a specific request of that path 
+      app.use("/listings",(req,res,next)=>{
+        console.log("Hi , I am for Listing path");
+        next();
+      });
 
       app.get("/",(req,res)=>{
     res.send("HI, I am Root ");
-   })
+   });
 
    app.get("/listings",(req, res)=>{
     res.send("Listing are showing");
    });
 
-
-    app.use((req,res,next)=>{
-      req.time = new Date(Date.now()).toString();
-      console.log(req.method,req.hostname,req.path,req.time);
-      next();
-  });
 
   app.listen(port,()=>{
     console.log(`port is Runing on ${port}`) 
