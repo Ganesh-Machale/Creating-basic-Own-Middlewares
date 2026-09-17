@@ -28,15 +28,15 @@ const app = express();
       });
 
     //   Api access token validation middleware 
-      app.use("/api",(req,res,next)=>{
+       const checkToken =(req,res,next)=>{
         let { token } = req.query;
          if (token === "giveaccess"){
            next();
          }
           res.send("Access Denied!")
-      });
+      };
 
-     app.get("/api",(req,res)=>{
+     app.get("/api",checkToken, (req,res)=>{
          res.send("data ");
        });
 
