@@ -40,14 +40,23 @@ const app = express();
          res.send("data ");
        });
 
+       app.get("/err",(req,res)=>{
+        abcd = abcd;
+       });
+
+
       app.get("/",(req,res)=>{
-    res.send("HI, I am Root ");
-   });
+         res.send("HI, I am Root ");
+       });
 
    app.get("/listings",(req, res)=>{
     res.send("Listing are showing");
    });
-
+     
+    // Using Default error handling middleware 
+    app.use((err,req,res,next)=>{
+      console.log("--------ERROR---------");
+    });
 
   app.listen(port,()=>{
     console.log(`port is Runing on ${port}`) 
