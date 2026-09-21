@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const ExpressError = require("./ExpressError.js");
 
   let port = 3000;
  
@@ -33,7 +34,7 @@ const app = express();
          if (token === "giveaccess"){
            next();
          }
-          res.send("Access Denied!")
+          throw new Error("Access Denied!")
       };
 
      app.get("/api",checkToken, (req,res)=>{
@@ -54,9 +55,9 @@ const app = express();
    });
      
     // Using Default error handling middleware 
-    app.use((err,req,res,next)=>{
-      console.log("--------ERROR---------");
-    });
+    // app.use((err,req,res,next)=>{
+    //   console.log("--------ERROR---------");
+    // });
 
   app.listen(port,()=>{
     console.log(`port is Runing on ${port}`) 
