@@ -34,7 +34,7 @@ const ExpressError = require("./ExpressError.js");
          if (token === "giveaccess"){
            next();
          }
-          throw new Error("Access Denied!")
+          throw new ExpressError(401,"Access Denied!");
       };
 
      app.get("/api",checkToken, (req,res)=>{
