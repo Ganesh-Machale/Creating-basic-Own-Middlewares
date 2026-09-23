@@ -34,7 +34,7 @@ const ExpressError = require("./ExpressError.js");
          if (token === "giveaccess"){
            next();
          }
-          throw new ExpressError(401,"Access Denied!");
+          throw new ExpressError(401, "Access Denied!");
       };
 
      app.get("/api",checkToken, (req,res)=>{
@@ -54,10 +54,10 @@ const ExpressError = require("./ExpressError.js");
     res.send("Listing are showing");
    });
      
-    // Using Default error handling middleware 
-    // app.use((err,req,res,next)=>{
+  // ((err,req,res,next)=>{
     //   console.log("--------ERROR---------");
-    // });
+    // });  // Using Default error handling middleware 
+    // app.use
 
   app.listen(port,()=>{
     console.log(`port is Runing on ${port}`) 
