@@ -3,6 +3,11 @@ const app = express();
 const ExpressError = require("./ExpressError.js");
 
   let port = 3000;
+
+
+  app.listen(port,()=>{
+    console.log(`port is Runing on ${port}`) 
+  });
  
   //  app.use((req,res,next)=>{
   //   console.log("Hi, I am 1st Middleware");
@@ -25,14 +30,14 @@ const ExpressError = require("./ExpressError.js");
       // Specific Path Middleware that rubs only ones for a specific request of that path 
       app.use("/listings",(req,res,next)=>{
         console.log("Hi , I am for Listing path");
-        next();
+          next();
       });
 
     //   Api access token validation middleware 
        const checkToken =(req,res,next)=>{
         let { token } = req.query;
          if (token === "giveaccess"){
-           next();
+            next();
          }
           throw new ExpressError(401, "Access Denied!");
       };
@@ -54,11 +59,11 @@ const ExpressError = require("./ExpressError.js");
     res.send("Listing are showing");
    });
      
-  // ((err,req,res,next)=>{
-    //   console.log("--------ERROR---------");
-    // });  // Using Default error handling middleware 
-    // app.use
+   // Using Default error handling middleware
+  app.use((err,req,res,next)=>{
+      console.log("--------ERROR---------");
+      next(err);
+    });  // Using Default error handling middleware 
 
-  app.listen(port,()=>{
-    console.log(`port is Runing on ${port}`) 
-  });
+
+  
