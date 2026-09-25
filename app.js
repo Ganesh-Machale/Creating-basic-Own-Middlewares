@@ -58,12 +58,12 @@ const ExpressError = require("./ExpressError.js");
    app.get("/listings",(req, res)=>{
     res.send("Listing are showing");
    });
-     
-   // Using Default error handling middleware
+ 
+
   app.use((err,req,res,next)=>{
-      console.log("--------ERROR---------");
-      next(err);
-    });  // Using Default error handling middleware 
+      let { status=500 , message="Some Error Occured" } = err;
+        res.status(status).send(message);
+    }); 
 
 
   
