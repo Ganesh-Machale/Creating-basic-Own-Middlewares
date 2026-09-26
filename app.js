@@ -59,6 +59,9 @@ const ExpressError = require("./ExpressError.js");
     res.send("Listing are showing");
    });
  
+    app.get("/admin",(req,res)=>{
+        throw new ExpressError(403, "Acess to Admin is Forbidden");
+    })
 
   app.use((err,req,res,next)=>{
       let { status=500 , message="Some Error Occured" } = err;
